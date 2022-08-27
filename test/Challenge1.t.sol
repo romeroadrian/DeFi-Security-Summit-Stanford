@@ -8,6 +8,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {InSecureumLenderPool} from "../src/Challenge1.lenderpool.sol";
 import {InSecureumToken} from "../src/tokens/tokenInsecureum.sol";
 
+import {HackChallenge1} from "../src/hacks/HackChallenge1.sol";
 
 contract Challenge1Test is Test {
     InSecureumLenderPool target; 
@@ -32,16 +33,8 @@ contract Challenge1Test is Test {
         //    Add your hack below!    //
         //////////////////////////////*/
 
-        //=== this is a sample of flash loan usage
-        FlashLoandReceiverSample _flashLoanReceiver = new FlashLoandReceiverSample();
-
-        target.flashLoan(
-          address(_flashLoanReceiver),
-          abi.encodeWithSignature(
-            "receiveFlashLoan(address)", player
-          )
-        );
-        //===
+        HackChallenge1 hack = new HackChallenge1();
+        hack.hack(address(target));
 
         //============================//
 

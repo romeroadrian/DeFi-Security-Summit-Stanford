@@ -12,6 +12,7 @@ import {InsecureDexLP} from "../src/Challenge2.DEX.sol";
 import {InSecureumLenderPool} from "../src/Challenge1.lenderpool.sol";
 import {BorrowSystemInsecureOracle} from "../src/Challenge3.borrow_system.sol";
 
+import {HackChallenge3} from "../src/hacks/HackChallenge3.sol";
 
 contract Challenge3Test is Test {
     // dex & oracle
@@ -67,6 +68,9 @@ contract Challenge3Test is Test {
         /*//////////////////////////////
         //    Add your hack below!    //
         //////////////////////////////*/
+
+        HackChallenge3 hack = new HackChallenge3(address(target), address(oracleDex), address(flashLoanPool));
+        hack.hack();
 
         //============================//
 

@@ -9,6 +9,8 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import {InsecureDexLP} from "../src/Challenge2.DEX.sol";
 
+import {HackChallenge2} from "../src/hacks/HackChallenge2.sol";
+
 
 contract Challenge2Test is Test {
     InsecureDexLP target; 
@@ -46,7 +48,13 @@ contract Challenge2Test is Test {
 
         /*//////////////////////////////
         //    Add your hack below!    //
-        //////////////////////////////*/      
+        //////////////////////////////*/
+        HackChallenge2 hack = new HackChallenge2(address(target));
+
+        token0.approve(address(hack), type(uint256).max);
+        token1.approve(address(hack), type(uint256).max);
+
+        hack.hack();
 
         //============================//
 
